@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:out_of_context/controllers/game_controller.dart';
 import 'package:out_of_context/controllers/players_controller.dart';
 import 'package:out_of_context/utils/app_styles.dart';
+import 'package:out_of_context/views/questions_view.dart';
 import 'package:out_of_context/views/widgets/custom_button.dart';
 import 'package:provider/provider.dart';
 
@@ -32,25 +33,34 @@ class _GameViewState extends State<GameView> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              playersController.namesList![index],
+              playersController.namesList[index],
               style: AppStyles.textStyle24,
             ),
             SizedBox(
               height: 20,
             ),
             gameController.returnWidgetBasedOnPlayer(
-                playersController.namesList![index], index, page),
+                playersController.namesList[index], page),
             SizedBox(
               height: 20,
             ),
             CustomButton(
               text: 'التالي',
               onPressed: () {
-                page++;
-                if (page % 2 == 0) {
-                  index++;
+                if (playersController.namesList.length == index + 1 &&
+                    page == playersController.namesList.length * 2 - 1) {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const QuestionsView(),
+                      ));
+                } else {
+                  page++;
+                  if (page % 2 == 0) {
+                    index++;
+                  }
+                  gameController.rebuidUi();
                 }
-                gameController.rebuidUi();
               },
             )
           ],

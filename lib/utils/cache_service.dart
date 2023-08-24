@@ -15,4 +15,13 @@ class CacheService {
   static List<String>? getStringList({required String key}) {
     return prefs.getStringList(key);
   }
+
+  static Future<void> setString(
+      {required String key, required String value}) async {
+    await prefs.setString(key, value);
+  }
+
+  static getString({required String key}) {
+    return prefs.getString(key);
+  }
 }

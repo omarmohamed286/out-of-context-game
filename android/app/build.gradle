@@ -28,6 +28,7 @@ apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 android {
     namespace "com.example.out_of_context"
     compileSdkVersion flutter.compileSdkVersion
+    buildToolsVersion "30.0.0"
     ndkVersion flutter.ndkVersion
 
     compileOptions {

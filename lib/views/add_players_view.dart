@@ -46,12 +46,12 @@ class _AddPlayersViewState extends State<AddPlayersView> {
                 SizedBox(
                   height: 500,
                   child: ListView.builder(
-                    itemCount: controller.namesList?.length,
+                    itemCount: controller.namesList.length,
                     itemBuilder: (context, index) {
                       return Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: PlayerNameCard(
-                          name: controller.namesList?[index] ?? '',
+                          name: controller.namesList[index],
                           onTap: () {
                             controller.removeNameFromList(index: index);
                           },
@@ -77,7 +77,7 @@ class _AddPlayersViewState extends State<AddPlayersView> {
                     ),
                     CustomButton(
                       text: 'التالي',
-                      onPressed: controller.namesList!.length < 3
+                      onPressed: controller.namesList.length < 3
                           ? null
                           : () {
                               Provider.of<GameController>(context,

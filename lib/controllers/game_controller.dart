@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:out_of_context/controllers/players_controller.dart';
+import 'package:out_of_context/utils/cache_service.dart';
 
 import '../utils/app_styles.dart';
 
@@ -12,19 +13,43 @@ class GameController extends ChangeNotifier {
 
   String playerOutOfContext = '';
 
-  String getPlayerOutOfContext() {
+  List<String> animals = [
+    'كلب',
+    'قطة',
+    'فيل',
+    'اسد',
+    'نمر',
+    'ذئب',
+    'زرافة',
+    'جمل',
+    'غزال',
+    'قرد',
+    'حمار وحشي',
+    'حصان',
+    'خروف',
+    'دجاج',
+    'سلحفاة',
+    'فار',
+    'بقرة',
+    'تمساح',
+    'دب',
+    'ثعلب',
+    'خنزير'
+  ];
+
+  void getPlayerOutOfContext() {
     playersController.getListFromPrefs();
-    var playersList = playersController.namesList!;
+    var playersList = playersController.namesList;
     int randomNum = Random().nextInt(playersList.length);
     for (int i = 0; i < playersList.length; i++) {
       if (randomNum == i) {
         playerOutOfContext = playersList[i];
+        CacheService.setString(key: 'outOfContext', value: playerOutOfContext);
       }
     }
-    return playerOutOfContext;
   }
 
-  Widget returnWidgetBasedOnPlayer(String playerName, int index,int page) {
+  Widget returnWidgetBasedOnPlayer(String playerName, int page) {
     if (page == 0 || page % 2 == 0) {
       return Text(
         '''
@@ -54,6 +79,32 @@ class GameController extends ChangeNotifier {
 انت داخل في السالفة واللي هي ضب 
 هدفك في اللعبة معرفة مين منكم اللي برا السالفة
 اضغط التالي
+''',
+      style: AppStyles.textStyle24,
+      textAlign: TextAlign.center,
+    );
+  }
+
+  Widget returnQuestions(int indexOfWidget, int indexOfPlayer) {
+    int askWho = indexOfPlayer == playersController.namesList.length - 1
+        ? 0
+        : indexOfPlayer + 1;
+
+    if (indexOfWidget == 0) {
+      return Text(
+        '''
+كل شخص راح يسأل شخص ثاني سؤال متعلق بالسالفة
+اضغطوا التالي حتي تعرفون مين راح يسأل مين
+''',
+        style: AppStyles.textStyle24,
+        textAlign: TextAlign.center,
+      );
+    }
+    return Text(
+      '''
+${playersController.namesList[indexOfPlayer]} اسأل ${playersController.namesList[askWho]} سؤال
+متعلق بالسالفة! اختار سؤالك بعناية حتي اللي برا السالفة ما يعرف عن ايش تتكلمون
+
 ''',
       style: AppStyles.textStyle24,
       textAlign: TextAlign.center,

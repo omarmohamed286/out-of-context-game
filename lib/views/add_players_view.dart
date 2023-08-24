@@ -83,6 +83,9 @@ class _AddPlayersViewState extends State<AddPlayersView> {
                               Provider.of<GameController>(context,
                                       listen: false)
                                   .getPlayerOutOfContext();
+                              Provider.of<GameController>(context,
+                                      listen: false)
+                                  .getNewTopic();
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(

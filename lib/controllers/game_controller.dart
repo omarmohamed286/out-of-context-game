@@ -13,6 +13,10 @@ class GameController extends ChangeNotifier {
 
   String playerOutOfContext = '';
 
+  String currentTopic = '';
+
+  String category = '';
+
   List<String> animals = [
     'كلب',
     'قطة',
@@ -37,6 +41,24 @@ class GameController extends ChangeNotifier {
     'خنزير'
   ];
 
+  List<String> clothes = [
+    'تيشيرت',
+    'بنطلون',
+    'حزام',
+    'جاكيت',
+    'جزمة',
+    'كوتشي',
+    'شراب',
+    'كاب',
+    'عباية',
+    'نظارة',
+    'ساعة'
+  ];
+
+  void setCategory({required String mainCategory}) {
+    category = mainCategory;
+  }
+
   void getPlayerOutOfContext() {
     playersController.getListFromPrefs();
     var playersList = playersController.namesList;
@@ -47,6 +69,17 @@ class GameController extends ChangeNotifier {
         CacheService.setString(key: 'outOfContext', value: playerOutOfContext);
       }
     }
+  }
+
+  void getNewTopic() {
+    if (category == 'animals') {
+      int randomNum = Random().nextInt(animals.length);
+      currentTopic = animals[randomNum];
+    } else {
+      int randomNum = Random().nextInt(clothes.length);
+      currentTopic = clothes[randomNum];
+    }
+    CacheService.setString(key: 'currentTopic', value: currentTopic);
   }
 
   Widget returnWidgetBasedOnPlayer(String playerName, int page) {
@@ -76,7 +109,7 @@ class GameController extends ChangeNotifier {
     }
     return Text(
       '''
-انت داخل في السالفة واللي هي ضب 
+انت داخل في السالفة واللي هي $currentTopic 
 هدفك في اللعبة معرفة مين منكم اللي برا السالفة
 اضغط التالي
 ''',

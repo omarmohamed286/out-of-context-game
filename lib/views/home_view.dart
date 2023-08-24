@@ -1,10 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:out_of_context/controllers/game_controller.dart';
 import 'package:out_of_context/views/add_players_view.dart';
+import 'package:provider/provider.dart';
 
 import 'widgets/topic_card.dart';
 
-class HomeView extends StatelessWidget {
+class HomeView extends StatefulWidget {
   const HomeView({super.key});
+
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
+  late GameController gameController;
+
+  @override
+  void didChangeDependencies() {
+    gameController = Provider.of<GameController>(context);
+    super.didChangeDependencies();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +30,14 @@ class HomeView extends StatelessWidget {
         children: [
           TopicCard(
             title: 'ملابس',
+            onTap: () {
+              gameController.setCategory(mainCategory: 'clothes');
+              Navigator.push(context, MaterialPageRoute(
+                builder: (context) {
+                  return AddPlayersView();
+                },
+              ));
+            },
           ),
           SizedBox(
             width: 30,
@@ -22,6 +45,7 @@ class HomeView extends StatelessWidget {
           TopicCard(
             title: 'حيوانات',
             onTap: () {
+              gameController.setCategory(mainCategory: 'animals');
               Navigator.push(context, MaterialPageRoute(
                 builder: (context) {
                   return AddPlayersView();

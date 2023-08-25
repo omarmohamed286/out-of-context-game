@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:out_of_context/controllers/game_controller.dart';
 import 'package:out_of_context/controllers/players_controller.dart';
+import 'package:out_of_context/utils/navigation_service.dart';
 import 'package:out_of_context/views/game_view.dart';
 import 'package:provider/provider.dart';
 
@@ -84,12 +85,8 @@ class _AddPlayersViewState extends State<AddPlayersView> {
                           : () {
                               gameController.getPlayerOutOfContext();
                               gameController.getNewTopic();
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => GameView(),
-                                ),
-                              );
+                              navigateWithoutAnimation(
+                                  context, const GameView());
                             },
                     )
                   ],

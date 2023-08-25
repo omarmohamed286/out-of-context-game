@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:out_of_context/utils/navigation_service.dart';
 import 'package:out_of_context/views/out_of_context_view.dart';
 import 'package:provider/provider.dart';
 
@@ -63,14 +64,8 @@ class _VotingViewState extends State<VotingView> {
                       onPressed: () {
                         if (numberOfVotes ==
                             playersController.namesList.length - 1) {
-                          Navigator.push(
-                              context,
-                              PageRouteBuilder(
-                                  pageBuilder: (context, _, __) =>
-                                      OutOfContextView(),
-                                  transitionDuration: Duration.zero,
-                                  reverseTransitionDuration: Duration.zero));
-                          numberOfVotes = 0;
+                          navigateWithoutAnimation(
+                              context, const OutOfContextView());
                         } else {
                           numberOfVotes++;
                           gameController.rebuidUi();

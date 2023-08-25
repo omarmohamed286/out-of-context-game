@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:out_of_context/controllers/game_controller.dart';
 import 'package:out_of_context/controllers/players_controller.dart';
 import 'package:out_of_context/utils/app_styles.dart';
+import 'package:out_of_context/utils/navigation_service.dart';
 import 'package:out_of_context/views/questions_view.dart';
 import 'package:out_of_context/views/widgets/custom_button.dart';
 import 'package:provider/provider.dart';
@@ -49,12 +50,7 @@ class _GameViewState extends State<GameView> {
               onPressed: () {
                 if (playersController.namesList.length == index + 1 &&
                     page == playersController.namesList.length * 2 - 1) {
-                  Navigator.push(
-                      context,
-                      PageRouteBuilder(
-                          pageBuilder: (context, _, __) => QuestionsView(),
-                          transitionDuration: Duration.zero,
-                          reverseTransitionDuration: Duration.zero));
+                  navigateWithoutAnimation(context, const QuestionsView());
                 } else {
                   page++;
                   if (page % 2 == 0) {

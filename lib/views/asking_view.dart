@@ -6,6 +6,7 @@ import 'package:out_of_context/views/widgets/custom_button.dart';
 import 'package:provider/provider.dart';
 
 import '../utils/app_styles.dart';
+import '../utils/navigation_service.dart';
 import 'widgets/vote_card.dart';
 
 class AskingView extends StatefulWidget {
@@ -69,13 +70,7 @@ ${player ?? listAfterEdit[0]} اسأل شخص عاوز تسأله او اضغط 
           CustomButton(
             text: 'صوت',
             onPressed: () {
-              Navigator.push(
-                  context,
-                   PageRouteBuilder(
-                          pageBuilder: (context, _, __) => VotingView(),
-                          transitionDuration: Duration.zero,
-                          reverseTransitionDuration: Duration.zero)
-                  );
+              navigateWithoutAnimation(context, const VotingView());
             },
           )
         ],

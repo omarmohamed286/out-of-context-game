@@ -5,6 +5,7 @@ import 'package:out_of_context/views/asking_view.dart';
 import 'package:provider/provider.dart';
 
 import '../utils/app_styles.dart';
+import '../utils/navigation_service.dart';
 import 'widgets/custom_button.dart';
 
 class QuestionsView extends StatefulWidget {
@@ -22,7 +23,6 @@ class _QuestionsViewState extends State<QuestionsView> {
   Widget build(BuildContext context) {
     var gameController = Provider.of<GameController>(context);
     var playersController = Provider.of<PlayersController>(context);
-
     return Scaffold(
       body: Center(
         child: Column(
@@ -43,12 +43,7 @@ class _QuestionsViewState extends State<QuestionsView> {
               text: 'التالي',
               onPressed: () {
                 if (indexOfPlayer == playersController.namesList.length - 1) {
-                  Navigator.push(
-                      context,
-                      PageRouteBuilder(
-                          pageBuilder: (context, _, __) => AskingView(),
-                          transitionDuration: Duration.zero,
-                          reverseTransitionDuration: Duration.zero));
+                  navigateWithoutAnimation(context, const AskingView());
                 } else {
                   indexOfWidget++;
                   indexOfPlayer++;

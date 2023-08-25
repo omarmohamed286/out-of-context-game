@@ -4,6 +4,7 @@ import 'package:out_of_context/views/results_view.dart';
 import '../../controllers/game_controller.dart';
 import '../../utils/app_styles.dart';
 import '../../utils/cache_service.dart';
+import '../../utils/navigation_service.dart';
 import 'choosing_card.dart';
 
 class ChooseTopicWidget extends StatefulWidget {
@@ -62,12 +63,7 @@ class _ChooseTopicWidgetState extends State<ChooseTopicWidget> {
     topicsColors[options.indexOf(topic)] = Colors.green;
     widget.gameController.rebuidUi();
     Future.delayed(const Duration(seconds: 2), () {
-      Navigator.push(
-          context,
-          PageRouteBuilder(
-              pageBuilder: (context, _, __) => const ResultsView(),
-              transitionDuration: Duration.zero,
-              reverseTransitionDuration: Duration.zero));
+      navigateWithoutAnimation(context, const ResultsView());
     });
   }
 
@@ -75,12 +71,7 @@ class _ChooseTopicWidgetState extends State<ChooseTopicWidget> {
     topicsColors[i] = Colors.green;
     widget.gameController.rebuidUi();
     Future.delayed(const Duration(seconds: 2), () {
-      Navigator.push(
-          context,
-          PageRouteBuilder(
-              pageBuilder: (context, _, __) => const ResultsView(),
-              transitionDuration: Duration.zero,
-              reverseTransitionDuration: Duration.zero));
+      navigateWithoutAnimation(context, const ResultsView());
     });
   }
 }

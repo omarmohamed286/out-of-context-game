@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:out_of_context/controllers/game_controller.dart';
+import 'package:out_of_context/utils/navigation_service.dart';
 import 'package:out_of_context/views/add_players_view.dart';
 import 'package:provider/provider.dart';
 
@@ -32,11 +33,7 @@ class _HomeViewState extends State<HomeView> {
             title: 'ملابس',
             onTap: () {
               gameController.setCategory(mainCategory: 'clothes');
-              Navigator.push(context, MaterialPageRoute(
-                builder: (context) {
-                  return AddPlayersView();
-                },
-              ));
+              navigateWithAnimation(context, const AddPlayersView());
             },
           ),
           SizedBox(
@@ -46,11 +43,7 @@ class _HomeViewState extends State<HomeView> {
             title: 'حيوانات',
             onTap: () {
               gameController.setCategory(mainCategory: 'animals');
-              Navigator.push(context, MaterialPageRoute(
-                builder: (context) {
-                  return AddPlayersView();
-                },
-              ));
+              navigateWithAnimation(context, const AddPlayersView());
             },
           )
         ],

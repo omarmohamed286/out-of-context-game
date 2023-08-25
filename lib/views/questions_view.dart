@@ -45,9 +45,10 @@ class _QuestionsViewState extends State<QuestionsView> {
                 if (indexOfPlayer == playersController.namesList.length - 1) {
                   Navigator.push(
                       context,
-                      MaterialPageRoute(
-                        builder: (context) => AskingView(),
-                      ));
+                      PageRouteBuilder(
+                          pageBuilder: (context, _, __) => AskingView(),
+                          transitionDuration: Duration.zero,
+                          reverseTransitionDuration: Duration.zero));
                 } else {
                   indexOfWidget++;
                   indexOfPlayer++;

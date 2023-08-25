@@ -71,9 +71,11 @@ ${player ?? listAfterEdit[0]} اسأل شخص عاوز تسأله او اضغط 
             onPressed: () {
               Navigator.push(
                   context,
-                  MaterialPageRoute(
-                    builder: (context) => VotingView(),
-                  ));
+                   PageRouteBuilder(
+                          pageBuilder: (context, _, __) => VotingView(),
+                          transitionDuration: Duration.zero,
+                          reverseTransitionDuration: Duration.zero)
+                  );
             },
           )
         ],

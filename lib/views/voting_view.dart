@@ -19,7 +19,7 @@ class _VotingViewState extends State<VotingView> {
   late GameController gameController;
   List<String> listAfterEdit = [];
 
-@override
+  @override
   void initState() {
     super.initState();
   }
@@ -44,7 +44,7 @@ class _VotingViewState extends State<VotingView> {
           ),
           Text(
             '''
-${listAfterEdit[numberOfVotes]} اختار الشخص اللي تظن انه برا 
+ ${listAfterEdit[numberOfVotes]} اختار الشخص اللي تظن انه برا 
 السالفة!
 ''',
             style: AppStyles.textStyle24,
@@ -65,9 +65,11 @@ ${listAfterEdit[numberOfVotes]} اختار الشخص اللي تظن انه ب�
                             playersController.namesList.length - 1) {
                           Navigator.push(
                               context,
-                              MaterialPageRoute(
-                                builder: (context) => OutOfContextView(),
-                              ));
+                              PageRouteBuilder(
+                                  pageBuilder: (context, _, __) =>
+                                      OutOfContextView(),
+                                  transitionDuration: Duration.zero,
+                                  reverseTransitionDuration: Duration.zero));
                         } else {
                           numberOfVotes++;
                           gameController.rebuidUi();

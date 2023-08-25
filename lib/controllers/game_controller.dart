@@ -83,12 +83,13 @@ class GameController extends ChangeNotifier {
   }
 
   Widget returnWidgetBasedOnPlayer(String playerName, int page) {
+    String topic = category == 'animals' ? 'الحيوانات' : 'الملابس';
     if (page == 0 || page % 2 == 0) {
       return Text(
         '''
-ادو الجوال ل$playerName
-اضغط التالي حتي تعرف هل انت برا
-السالفة او داخلها ولا تخلي احد غيرك
+ادو التليفون ل$playerName
+اضغط التالي عشان تعرف هل انت برا
+الموضوع او جوا ومتخليش حد غيرك
 يشوف الشاشة
 ''',
         style: AppStyles.textStyle24,
@@ -98,10 +99,10 @@ class GameController extends ChangeNotifier {
     if (playerName == playerOutOfContext) {
       return Text(
         '''
-انت اللي برا السالفة! حاول تعرف وش
-السالفة بالضبط من كلام البقية او
-اقنعهم يصوتون علي الشخص الخطأ
-تلميح السالفة عن الحيوانات
+انت اللي برا الموضوع! حاول تعرف ايه
+الموضوع بالظبط من كلام البقية او
+اقنعهم يصوتوا علي الشخص الخطأ
+تلميح الموضوع عن $topic
 ''',
         style: AppStyles.textStyle24,
         textAlign: TextAlign.center,
@@ -109,8 +110,8 @@ class GameController extends ChangeNotifier {
     }
     return Text(
       '''
-انت داخل في السالفة واللي هي $currentTopic 
-هدفك في اللعبة معرفة مين منكم اللي برا السالفة
+انت داخل في الموضوع واللي هو $currentTopic 
+هدفك في اللعبة معرفة مين منكم اللي برا الموضوع
 اضغط التالي
 ''',
       style: AppStyles.textStyle24,
@@ -126,8 +127,8 @@ class GameController extends ChangeNotifier {
     if (indexOfWidget == 0) {
       return Text(
         '''
-كل شخص راح يسأل شخص ثاني سؤال متعلق بالسالفة
-اضغطوا التالي حتي تعرفون مين راح يسأل مين
+كل شخص هيسأل شخص ثاني سؤال متعلق بالموضوع
+اضغطوا التالي عشان تعرفو مين هيسأل مين
 ''',
         style: AppStyles.textStyle24,
         textAlign: TextAlign.center,
@@ -136,7 +137,7 @@ class GameController extends ChangeNotifier {
     return Text(
       '''
 ${playersController.namesList[indexOfPlayer]} اسأل ${playersController.namesList[askWho]} سؤال
-متعلق بالسالفة! اختار سؤالك بعناية حتي اللي برا السالفة ما يعرف عن ايش تتكلمون
+متعلق بالموضوع! اختار سؤالك بعناية عشان اللي برا الموضوع ميعرفش بتتكلمو عن ايه
 
 ''',
       style: AppStyles.textStyle24,

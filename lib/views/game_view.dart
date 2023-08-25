@@ -51,9 +51,10 @@ class _GameViewState extends State<GameView> {
                     page == playersController.namesList.length * 2 - 1) {
                   Navigator.push(
                       context,
-                      MaterialPageRoute(
-                        builder: (context) => const QuestionsView(),
-                      ));
+                      PageRouteBuilder(
+                          pageBuilder: (context, _, __) => QuestionsView(),
+                          transitionDuration: Duration.zero,
+                          reverseTransitionDuration: Duration.zero));
                 } else {
                   page++;
                   if (page % 2 == 0) {

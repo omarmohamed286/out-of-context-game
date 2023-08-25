@@ -26,7 +26,9 @@ class _AddPlayersViewState extends State<AddPlayersView> {
 
   @override
   Widget build(BuildContext context) {
-    var controller = Provider.of<PlayersController>(context);
+    var playersController = Provider.of<PlayersController>(context);
+    var gameController = Provider.of<GameController>(context, listen: false);
+
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
@@ -46,14 +48,14 @@ class _AddPlayersViewState extends State<AddPlayersView> {
                 SizedBox(
                   height: 500,
                   child: ListView.builder(
-                    itemCount: controller.namesList.length,
+                    itemCount: playersController.namesList.length,
                     itemBuilder: (context, index) {
                       return Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: PlayerNameCard(
-                          name: controller.namesList[index],
+                          name: playersController.namesList[index],
                           onTap: () {
-                            controller.removeNameFromList(index: index);
+                            playersController.removeNameFromList(index: index);
                           },
                         ),
                       );
@@ -77,15 +79,11 @@ class _AddPlayersViewState extends State<AddPlayersView> {
                     ),
                     CustomButton(
                       text: 'التالي',
-                      onPressed: controller.namesList.length < 3
+                      onPressed: playersController.namesList.length < 3
                           ? null
                           : () {
-                              Provider.of<GameController>(context,
-                                      listen: false)
-                                  .getPlayerOutOfContext();
-                              Provider.of<GameController>(context,
-                                      listen: false)
-                                  .getNewTopic();
+                              gameController.getPlayerOutOfContext();
+                              gameController.getNewTopic();
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(

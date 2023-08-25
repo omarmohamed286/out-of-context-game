@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:out_of_context/views/widgets/custom_button.dart';
 import 'package:provider/provider.dart';
 
 import '../controllers/players_controller.dart';
@@ -37,7 +38,7 @@ class _OutOfContextViewState extends State<OutOfContextView> {
               style: AppStyles.textStyle24,
             ),
             SizedBox(
-              height: 60,
+              height: 150,
             ),
             AnimatedSize(
               curve: Curves.easeIn,
@@ -49,8 +50,12 @@ class _OutOfContextViewState extends State<OutOfContextView> {
               ),
             ),
             SizedBox(
-              height: 60,
+              height: 100,
             ),
+            CustomButton(
+              text: 'التالي',
+              onPressed: () {},
+            )
           ],
         ),
       ),

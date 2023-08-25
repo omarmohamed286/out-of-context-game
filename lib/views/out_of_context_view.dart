@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:out_of_context/views/widgets/custom_button.dart';
+import 'package:out_of_context/controllers/game_controller.dart';
 import 'package:provider/provider.dart';
 
 import '../controllers/players_controller.dart';
-import '../utils/app_styles.dart';
+import 'widgets/choose_topic_widget.dart';
+import 'widgets/out_of_context_player_widget.dart';
 
 class OutOfContextView extends StatefulWidget {
   const OutOfContextView({super.key});
@@ -14,15 +15,19 @@ class OutOfContextView extends StatefulWidget {
 
 class _OutOfContextViewState extends State<OutOfContextView> {
   late PlayersController playersController;
+  late GameController gameController;
 
   @override
   void didChangeDependencies() {
     playersController = Provider.of<PlayersController>(context);
+    gameController = Provider.of<GameController>(context);
     if (playersController.counter < 500) {
       playersController.shuffleNames();
     }
     super.didChangeDependencies();
   }
+
+  PageController pageController = PageController();
 
   @override
   Widget build(BuildContext context) {
@@ -33,29 +38,22 @@ class _OutOfContextViewState extends State<OutOfContextView> {
             SizedBox(
               height: 60,
             ),
-            Text(
-              '... الشخص اللي برا السالفة هو',
-              style: AppStyles.textStyle24,
-            ),
             SizedBox(
-              height: 150,
-            ),
-            AnimatedSize(
-              curve: Curves.easeIn,
-              duration: const Duration(seconds: 2),
-              child: Text(
-                playersController.name ?? playersController.namesList[0],
-                style: AppStyles.textStyle24.copyWith(
-                    fontSize: playersController.isTimerFinished ? 50 : 24),
+              height: 700,
+              width: 500,
+              child: PageView(
+                controller: pageController,
+                children: [
+                  OutOfContextPlayerWidget(
+                    playersController: playersController,
+                    pageController: pageController,
+                  ),
+                  ChooseTopicWidget(
+                    gameController: gameController,
+                  )
+                ],
               ),
             ),
-            SizedBox(
-              height: 100,
-            ),
-            CustomButton(
-              text: 'التالي',
-              onPressed: () {},
-            )
           ],
         ),
       ),

@@ -82,6 +82,26 @@ class GameController extends ChangeNotifier {
     CacheService.setString(key: 'currentTopic', value: currentTopic);
   }
 
+  List<String> getListOfOptions() {
+    List<String> options = [];
+    String topic = CacheService.getString(key: 'currentTopic');
+    if (category == 'animals') {
+      int randomNum = Random().nextInt(5);
+      animals.shuffle();
+      options.addAll(animals.getRange(0, 6));
+      options.insert(randomNum, topic);
+      options = options.toSet().toList();
+    } else {
+      int randomNum = Random().nextInt(5);
+      clothes.shuffle();
+      options.addAll(clothes.getRange(0, 6));
+      options.insert(randomNum, topic);
+      options = options.toSet().toList();
+    }
+
+    return options;
+  }
+
   Widget returnWidgetBasedOnPlayer(String playerName, int page) {
     String topic = category == 'animals' ? 'الحيوانات' : 'الملابس';
     if (page == 0 || page % 2 == 0) {

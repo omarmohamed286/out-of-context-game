@@ -70,6 +70,7 @@ class _VotingViewState extends State<VotingView> {
                                       OutOfContextView(),
                                   transitionDuration: Duration.zero,
                                   reverseTransitionDuration: Duration.zero));
+                          numberOfVotes = 0;
                         } else {
                           numberOfVotes++;
                           gameController.rebuidUi();

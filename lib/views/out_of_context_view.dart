@@ -35,7 +35,7 @@ class _OutOfContextViewState extends State<OutOfContextView> {
       body: Center(
         child: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 60,
             ),
             SizedBox(

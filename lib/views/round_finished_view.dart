@@ -28,7 +28,7 @@ class _RoundFinishedViewState extends State<RoundFinishedView> {
                   RoundFinishedWidget(
                     pageController: pageController,
                   ),
-                  NewTopicWidget()
+                  const NewTopicWidget()
                 ],
               ),
             ),

@@ -20,16 +20,15 @@ class AddPlayersView extends StatefulWidget {
 
 class _AddPlayersViewState extends State<AddPlayersView> {
   @override
-  void didChangeDependencies() {
-    Provider.of<PlayersController>(context).getListFromPrefs();
-    super.didChangeDependencies();
+  void initState() {
+    context.read<PlayersController>().getListFromPrefs();
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     var playersController = Provider.of<PlayersController>(context);
     var gameController = Provider.of<GameController>(context, listen: false);
-
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(

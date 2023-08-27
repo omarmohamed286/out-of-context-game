@@ -18,26 +18,26 @@ class RoundFinishedWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     var gameController = Provider.of<GameController>(context, listen: false);
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        SizedBox(
+        const SizedBox(
           height: 60,
         ),
         Text(
           '! نهاية الجولة',
           style: AppStyles.textStyle24,
         ),
-        SizedBox(
+        const SizedBox(
           height: 60,
         ),
         Text(
           ''' 
-              تقدرو تكملو لعب او تغيرو اللاعبين او ترجعو للصفحة الرئيسية
+تقدرو تكملو لعب او تغيرو اللاعبين
+او ترجعو للصفحة الرئيسية
               ''',
           style: AppStyles.textStyle24,
           textAlign: TextAlign.center,
         ),
-        SizedBox(
+        const SizedBox(
           height: 100,
         ),
         CustomButton(
@@ -48,7 +48,7 @@ class RoundFinishedWidget extends StatelessWidget {
             pageController.jumpToPage(1);
           },
         ),
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
         CustomButton(
@@ -57,7 +57,7 @@ class RoundFinishedWidget extends StatelessWidget {
             navigateWithoutAnimation(context, const AddPlayersView());
           },
         ),
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
         CustomButton(

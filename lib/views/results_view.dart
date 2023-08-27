@@ -33,14 +33,14 @@ class _ResultsViewState extends State<ResultsView> {
         body: Center(
             child: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 60,
             ),
             Text(
               'النتائج',
               style: AppStyles.textStyle32,
             ),
-            SizedBox(
+            const SizedBox(
               height: 60,
             ),
             SizedBox(

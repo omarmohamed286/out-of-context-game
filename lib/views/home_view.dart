@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:out_of_context/controllers/game_controller.dart';
-import 'package:out_of_context/utils/cache_service.dart';
 import 'package:out_of_context/utils/navigation_service.dart';
 import 'package:out_of_context/views/add_players_view.dart';
 import 'package:provider/provider.dart';
@@ -15,16 +14,9 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  late GameController gameController;
-
-  @override
-  void didChangeDependencies() {
-    gameController = Provider.of<GameController>(context);
-    super.didChangeDependencies();
-  }
-
   @override
   Widget build(BuildContext context) {
+    var gameController = Provider.of<GameController>(context);
     return Scaffold(
       body: Center(
           child: Row(
@@ -37,7 +29,7 @@ class _HomeViewState extends State<HomeView> {
               navigateWithAnimation(context, const AddPlayersView());
             },
           ),
-          SizedBox(
+          const SizedBox(
             width: 30,
           ),
           TopicCard(

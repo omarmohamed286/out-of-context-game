@@ -37,7 +37,7 @@ class _ChooseTopicWidgetState extends State<ChooseTopicWidget> {
             '$outOfContextPlayer ايه هو الموضوع؟',
             style: AppStyles.textStyle24,
           ),
-          SizedBox(
+          const SizedBox(
             height: 60,
           ),
           Expanded(

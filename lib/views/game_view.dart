@@ -37,12 +37,12 @@ class _GameViewState extends State<GameView> {
               playersController.namesList[index],
               style: AppStyles.textStyle24,
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             gameController.returnWidgetBasedOnPlayer(
                 playersController.namesList[index], page),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             CustomButton(

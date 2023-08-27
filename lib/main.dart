@@ -26,7 +26,7 @@ class OutOfContext extends StatelessWidget {
           create: (context) => GameController(PlayersController()),
         )
       ],
-      child: MaterialApp(
+      child: const MaterialApp(
         home: HomeView(),
       ),
     );

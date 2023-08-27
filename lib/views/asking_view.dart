@@ -36,7 +36,7 @@ class _AskingViewState extends State<AskingView> {
     return Scaffold(
       body: Column(
         children: [
-          SizedBox(
+          const SizedBox(
             height: 60,
           ),
           Text(

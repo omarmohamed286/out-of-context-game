@@ -20,7 +20,7 @@ class NewTopicWidget extends StatelessWidget {
           style: AppStyles.textStyle24,
           textAlign: TextAlign.center,
         ),
-        SizedBox(
+        const SizedBox(
           height: 100,
         ),
         CustomButton(

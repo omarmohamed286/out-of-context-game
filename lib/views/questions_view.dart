@@ -32,11 +32,11 @@ class _QuestionsViewState extends State<QuestionsView> {
               'وقت الأسئلة',
               style: AppStyles.textStyle24,
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             gameController.returnQuestions(indexOfWidget, indexOfPlayer),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             CustomButton(

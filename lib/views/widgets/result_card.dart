@@ -27,7 +27,7 @@ class ResultCard extends StatelessWidget {
               name,
               style: AppStyles.textStyle24,
             ),
-            SizedBox(
+            const SizedBox(
               width: 100,
             ),
             Text(result, style: AppStyles.textStyle24),

@@ -62,6 +62,9 @@ class _VotingViewState extends State<VotingView> {
                     return VoteCard(
                       playerName: listAfterEdit[i],
                       onPressed: () {
+                        gameController.setVotesInCache(
+                            playersController.namesList[numberOfVotes],
+                            listAfterEdit[i]);
                         if (numberOfVotes ==
                             playersController.namesList.length - 1) {
                           navigateWithoutAnimation(

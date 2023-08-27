@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:out_of_context/utils/app_styles.dart';
 
 class TopicCard extends StatelessWidget {
   const TopicCard({super.key, required this.title, this.onTap});
@@ -17,7 +18,7 @@ class TopicCard extends StatelessWidget {
         alignment: Alignment.center,
         child: Text(
           title,
-          style: const TextStyle(fontSize: 32),
+          style: AppStyles.textStyle32,
         ),
       ),
     );

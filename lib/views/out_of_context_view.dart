@@ -49,6 +49,7 @@ class _OutOfContextViewState extends State<OutOfContextView> {
                     pageController: pageController,
                   ),
                   ChooseTopicWidget(
+                    playersController: playersController,
                     gameController: gameController,
                   )
                 ],

@@ -24,4 +24,8 @@ class CacheService {
   static getString({required String key}) {
     return prefs.getString(key);
   }
+
+  static Future<void> removeData({required String key}) async {
+    await prefs.remove(key);
+  }
 }

@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -100,6 +101,49 @@ class GameController extends ChangeNotifier {
     }
 
     return options;
+  }
+
+  void setVotesInCache(String voter, String vote) {
+    Map<String, dynamic> votesFromCache =
+        json.decode(CacheService.getString(key: 'votes') ?? '{}');
+    Map<String, dynamic> votes = {};
+    votes[voter] = vote;
+    Map<String, dynamic> totalVotes = {...votesFromCache, ...votes};
+    CacheService.setString(key: 'votes', value: json.encode(totalVotes));
+  }
+
+  void setResultsInCache(bool isTopicCorrect) {
+    Map<String, dynamic>? results =
+        json.decode(CacheService.getString(key: 'results') ?? '{}');
+    String outOfContextPlayer = CacheService.getString(key: 'outOfContext');
+    List<String> playersList = CacheService.getStringList(key: 'players') ?? [];
+    Map<String, dynamic> votesMap =
+        json.decode(CacheService.getString(key: 'votes'));
+    playersList.remove(outOfContextPlayer);
+    votesMap.remove(outOfContextPlayer);
+    for (var player in playersList) {
+      if (votesMap[player] == playerOutOfContext) {
+        results![player] == null
+            ? results[player] = 100
+            : results[player] += 100;
+      } else {
+        results![player] == null ? results[player] = 0 : results[player] += 0;
+      }
+    }
+    if (isTopicCorrect) {
+      results![outOfContextPlayer] == null
+          ? results[outOfContextPlayer] = 100
+          : results[outOfContextPlayer] += 100;
+    } else {
+      results![outOfContextPlayer] == null
+          ? results[outOfContextPlayer] = 0
+          : results[outOfContextPlayer] += 0;
+    }
+    CacheService.setString(key: 'results', value: json.encode(results));
+  }
+
+  Map<String, dynamic> getResultsMap() {
+    return json.decode(CacheService.getString(key: 'results'));
   }
 
   Widget returnWidgetBasedOnPlayer(String playerName, int page) {
